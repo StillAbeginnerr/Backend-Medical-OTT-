@@ -1,7 +1,7 @@
 const express = require("express");
 const { Signup, Login, Profile } = require("../controllers/authController.js");
 const { verifyJwt } = require("../middleware/authMiddleware.js");
-
+const { validate, signupSchema, loginSchema, profileSchema } = require("../middleware/validation.js");
 const router = express.Router();
 
 /**
@@ -42,7 +42,8 @@ const router = express.Router();
  *       400:
  *         description: Bad request (Missing required fields)
  */
-router.post("/signup/", Signup);
+
+router.post("/signup/", validate(signupSchema), Signup);
 
 /**
  * @swagger
@@ -79,7 +80,7 @@ router.post("/signup/", Signup);
  *       401:
  *         description: Unauthorized (Invalid credentials)
  */
-router.post("/login/", Login);
+router.post("/login/", validate(loginSchema), Login);
 
 /**
  * @swagger
@@ -117,6 +118,6 @@ router.post("/login/", Login);
  *       401:
  *         description: Unauthorized (Invalid token or missing authentication)
  */
-router.post("/profile/", verifyJwt, Profile);
+router.post("/profile/", verifyJwt, validate(profileSchema), Profile);
 
 module.exports = router;
