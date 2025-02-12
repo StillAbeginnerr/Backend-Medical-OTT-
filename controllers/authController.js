@@ -16,7 +16,9 @@ const Signup = async (req, res) => {
     const values = [username, email, encryptedPassword];
     const result = await pool.query(query, values);
     const user = result.rows[0];
+
     res.status(201).json({message: 'User created successfully', user});
+    res.redirect('/login');
 
     }catch(error){
         console.log(error);
