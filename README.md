@@ -1,4 +1,4 @@
-# 🚀 Clinikk TV Backend (Medical OTT App)
+# 🚀 (Medical OTT App)
 
 This is the backend service for **Clinikk TV**, a medical OTT platform. The backend supports:  
 ✅ **User Authentication** (Sign up, log in)  
